@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixel Palace – Shop Management System (Live Demo)</title>
+<meta name="description" content="Live demo of Pixel Palace, a Java Swing shop management system, running in the browser.">
+<script src="https://cjrtnc.leaningtech.com/5.0/loader.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #1c1c1c; color: #eaeaea; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { max-width: 1300px; margin: 0 auto; padding: 22px 16px 10px; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; }
+  h1 { margin: 0; font-size: 1.5rem; color: #96ffff; }
+  header p { margin: 0; color: #b5b5b5; }
+  .bar { max-width: 1300px; margin: 0 auto 12px; padding: 0 16px; display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 0.9rem; color: #c8c8c8; }
+  .bar code { background: #2c2c2c; color: #f6ffaa; padding: 1px 6px; border-radius: 4px; }
+  a { color: #ff9a4e; }
+  #wrap { width: 1300px; max-width: 100%; height: 820px; margin: 0 auto; position: relative; overflow: auto;
+    border: 1px solid #333; border-radius: 8px; background: #111; }
+  #status { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: #b5b5b5; pointer-events: none; }
+  footer { max-width: 1300px; margin: 14px auto 30px; padding: 0 16px; font-size: 0.85rem; color: #9a9a9a; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Pixel Palace – Shop Management System</h1>
+  <p>Java Swing desktop app running in your browser · <a href="https://github.com/DURJOYSAHA21/Shop-Management-Project">Source on GitHub</a></p>
+</header>
+<div class="bar">
+  <span><b>Customer:</b> <code>cust1</code> / <code>cust123</code></span>
+  <span><b>Owner:</b> <code>owner</code> / <code>owner123</code></span>
+  <span><b>Employee:</b> <code>emp1</code> / <code>emp123</code></span>
+</div>
+<div id="wrap"><div id="status">Starting Java… the first load can take 10–20 seconds.</div></div>
+<footer>
+  Your accounts and orders are saved only in this browser; clear this site's data to reset the demo.
+  Built with <a href="https://cheerpj.com/">CheerpJ</a>.
+</footer>
+<script type="module">
+  const status = document.getElementById("status");
+  // CheerpJ sees this web server under /app/, e.g. /app/<repo-name>/app.jar on GitHub Pages
+  const jar = "/app" + location.pathname.replace(/[^/]*$/, "") + "app.jar";
+  try {
+    await cheerpjInit({ version: 8 });
+    cheerpjCreateDisplay(1300, 820, document.getElementById("wrap"));
+    status.remove();
+    await cheerpjRunMain("WebLauncher", jar, jar);
+    document.getElementById("wrap").insertAdjacentHTML("beforeend",
+      '<div id="status" style="background:#1c1c1c">The app was closed. <a href="" style="margin-left:6px">Start again</a></div>');
+  } catch (e) {
+    status.textContent = "Could not start the demo: " + e;
+  }
+</script>
+</body>
+</html>

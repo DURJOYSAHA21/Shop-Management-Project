@@ -6,6 +6,12 @@ I built this as my 2nd-semester Object-Oriented Programming (OOP) course project
 
 ![Home screen](screenshots/home.png)
 
+## Live demo
+
+**Try it in your browser:** https://durjoysaha21.github.io/Shop-Management-Project/
+
+The original Java Swing app runs in the browser through [CheerpJ](https://cheerpj.com/), with no install. The first load takes 10–20 seconds. Your accounts and orders are saved only in your own browser.
+
 ## Features
 
 **Customer**
@@ -69,6 +75,17 @@ java -cp out Start
 ```
 
 Run it from the project folder, because the app loads `images/` and `repositories/data/` from there.
+
+### Rebuild the live demo
+
+The `docs/` folder is the website: `index.html` and `app.jar`. After changing the code, rebuild the jar (needs JDK 9 or newer):
+
+```sh
+build-web.bat        # Windows
+sh build-web.sh      # macOS / Linux
+```
+
+`app.jar` holds the compiled app, `images/` and `repositories/data/`. In the browser, `web/WebLauncher.java` copies those files into browser storage on the first visit, then starts `Start.main`.
 
 ## Demo accounts
 
