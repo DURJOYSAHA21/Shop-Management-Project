@@ -10,17 +10,21 @@ I built this as my 2nd-semester Object-Oriented Programming (OOP) course project
 
 **Customer**
 - Sign up, log in and reset a forgotten password with a security question
-- Browse laptops (Asus, Apple, MSI, Dell, HP, Acer) and phones (iPhone, Samsung, Asus ROG, Google Pixel)
-- Buy a product: the quantity is checked against the stock, and the stock is reduced after payment
+- Browse laptops (Asus, Apple, MSI, Dell, HP, Acer) and phones (iPhone, Samsung, Asus ROG, Google Pixel), with live price and stock on every product page
+- Buy a product straight away, or add several products to the **Cart** and check out once
+- Membership discount (Silver 10%, Gold 20%, Platinum 30%) is taken off at payment
+- Quantities are checked against the stock, and the stock is reduced after payment; out-of-stock products can't be bought
 - See past orders on the **My Orders** screen
 - Delete their own account after confirming the password
 
 **Owner**
 - Add, remove, search and update customers, owners and employees
 - View the customer list, owner list and product list with stock levels
+- **Sales Report**: every order with its products, plus total orders and total revenue
+- **Manage Stock**: restock products and change prices
 
 **Employee**
-- Log in and use the shop screens to sell products
+- Log in to the restock screen and add stock to products
 
 ## Tech and concepts
 
@@ -35,13 +39,17 @@ I built this as my 2nd-semester Object-Oriented Programming (OOP) course project
 |---|---|
 | ![Login](screenshots/login.png) | ![Product](screenshots/product.png) |
 
-| Payment | Order history |
+| Cart | Payment with discount |
 |---|---|
-| ![Payment](screenshots/payment.png) | ![Order history](screenshots/history.png) |
+| ![Cart](screenshots/cart.png) | ![Payment](screenshots/payment.png) |
 
-| Owner dashboard |
-|---|
-| ![Owner](screenshots/owner.png) |
+| Order history | Owner dashboard |
+|---|---|
+| ![Order history](screenshots/history.png) | ![Owner](screenshots/owner.png) |
+
+| Sales report | Manage stock |
+|---|---|
+| ![Sales report](screenshots/sales.png) | ![Manage stock](screenshots/manage.png) |
 
 ## How to run
 
@@ -66,8 +74,8 @@ Run it from the project folder, because the app loads `images/` and `repositorie
 
 | Role | User ID | Password |
 |---|---|---|
-| Customer | `cust1` | `cust123` |
-| Customer | `cust2` | `cust456` |
+| Customer (Silver, 10% off) | `cust1` | `cust123` |
+| Customer (Gold, 20% off) | `cust2` | `cust456` |
 | Owner | `owner` | `owner123` |
 | Employee | `emp1` | `emp123` |
 
@@ -75,7 +83,8 @@ Run it from the project folder, because the app loads `images/` and `repositorie
 
 ```
 Start.java              entry point (opens the login screen)
-Frames/                 Swing screens (login, home, product pages, payment, owner dashboard)
+Frames/                 Swing screens (login, home, product pages, cart, payment, order history,
+                        owner dashboard, sales report, manage stock)
 entities/               data classes (User, Customer, Owner, Employer, Product, Order, OrderLine, Payment)
 interfaces/             repository interfaces
 repositories/           file-based repositories and FileIO

@@ -165,9 +165,9 @@ public class LoginFrame extends JFrame implements ActionListener{
 			User user=urp.searchUserById(uId);
 			if(user!=null){
 				if(user.getUserId().equals(uId)&&user.getPassword().equals(pass)&&user.getRole()==1){
-					//employees use the shop screens to sell products
+					//employees restock products
 					Session.currentUser=user;
-					HomeFrame hcf=new HomeFrame();
+					ManageProduct hcf=new ManageProduct(user);
 					JOptionPane.showMessageDialog(this,"Employee logged in successfully!");
 			        hcf.setVisible(true);
 			        this.setVisible(false);

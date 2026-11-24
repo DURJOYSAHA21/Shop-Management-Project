@@ -10,7 +10,7 @@ public class HomeFrame extends JFrame implements ActionListener{
 	private JPanel panel;
 	
 	private JLabel label1,label2,label3,label4,label5,label6;
-	private JButton laptopButton,phoneButton,exitButton,dltButton,ordersButton;
+	private JButton laptopButton,phoneButton,exitButton,dltButton,ordersButton,cartButton;
 	
 	private Cursor cursor;
 	private Font f1, f2,f3;
@@ -127,6 +127,17 @@ public class HomeFrame extends JFrame implements ActionListener{
 		this.ordersButton.addActionListener(this);
 		this.panel.add(ordersButton);
 
+		this.cartButton=new JButton("Cart");
+		this.cartButton.setBounds(860,50,100,30);
+		this.cartButton.setBorder(BorderFactory.createEtchedBorder());
+		this.cartButton.setFocusable(false);
+		this.cartButton.setFont(f3);
+		this.cartButton.setForeground(Color.black);
+		this.cartButton.setBackground(new Color(150,255,255));
+		this.cartButton.setCursor(cursor);
+		this.cartButton.addActionListener(this);
+		this.panel.add(cartButton);
+
 		this.panel.setBackground(new Color(28,28,28));
 		this.add(panel);
 	}
@@ -143,6 +154,11 @@ public class HomeFrame extends JFrame implements ActionListener{
 		if(phoneButton.getText().equals(command)){
 			PhoneFrame pf=new PhoneFrame();
 			pf.setVisible(true);
+			this.setVisible(false);
+		}
+		if(ae.getSource()==cartButton){
+			CartFrame cf=new CartFrame();
+			cf.setVisible(true);
 			this.setVisible(false);
 		}
 		if(ae.getSource()==ordersButton && Session.currentUser!=null){

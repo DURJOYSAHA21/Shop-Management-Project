@@ -15,7 +15,7 @@ public class OwnerOperation extends JFrame implements ActionListener{
 	private JPasswordField passTF,confirmpassTF;
 	private JRadioButton maleRB,femaleRB;
 	private ButtonGroup bg;
-	private JButton addButton,backButton,removeButton,ulButton,updButton,customerButton,searchButton,exitButton,addCustomer,removeCustomer,searchCustomer,addEmployer,removeEmployer,searchEmployer,productButton;
+	private JButton addButton,backButton,removeButton,ulButton,updButton,customerButton,searchButton,exitButton,addCustomer,removeCustomer,searchCustomer,addEmployer,removeEmployer,searchEmployer,productButton,salesButton,manageButton;
 	private JComboBox securityQ;
 	private Cursor cursor;
 	private User u;
@@ -241,7 +241,27 @@ public class OwnerOperation extends JFrame implements ActionListener{
 		this.ulButton.setBorder(BorderFactory.createEtchedBorder());
 		this.ulButton.setBackground(new Color(255,253,110));
 		this.ulButton.addActionListener(this);
-		this.panel.add(ulButton);		
+		this.panel.add(ulButton);
+
+		this.salesButton=new JButton("Sales Report");
+		this.salesButton.setBounds(530,380,150,40);
+		this.salesButton.setFont(new Font("Calibri",Font.BOLD,23));
+		this.salesButton.setForeground(Color.black);
+		this.salesButton.setFocusable(false);
+		this.salesButton.setBorder(BorderFactory.createEtchedBorder());
+		this.salesButton.setBackground(new Color(255,253,110));
+		this.salesButton.addActionListener(this);
+		this.panel.add(salesButton);
+
+		this.manageButton=new JButton("Manage Stock");
+		this.manageButton.setBounds(730,380,150,40);
+		this.manageButton.setFont(new Font("Calibri",Font.BOLD,23));
+		this.manageButton.setForeground(Color.black);
+		this.manageButton.setFocusable(false);
+		this.manageButton.setBorder(BorderFactory.createEtchedBorder());
+		this.manageButton.setBackground(new Color(255,253,110));
+		this.manageButton.addActionListener(this);
+		this.panel.add(manageButton);
 		
 		//cursor
 		cursor = new Cursor(Cursor.HAND_CURSOR);
@@ -360,6 +380,20 @@ public class OwnerOperation extends JFrame implements ActionListener{
 		if(productButton.getText().equals(command))
 		{
 			AllProductList a=new AllProductList(this.u);
+			this.setVisible(false);
+			a.setVisible(true);
+		}
+
+		if(salesButton.getText().equals(command))
+		{
+			SalesReport a=new SalesReport(this.u);
+			this.setVisible(false);
+			a.setVisible(true);
+		}
+
+		if(manageButton.getText().equals(command))
+		{
+			ManageProduct a=new ManageProduct(this.u);
 			this.setVisible(false);
 			a.setVisible(true);
 		}

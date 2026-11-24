@@ -3,6 +3,8 @@ import java.lang.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import entities.*;
+import repositories.*;
 
 public class IppmFrame extends JFrame implements ActionListener{
 	private JPanel panel,panel1;
@@ -11,7 +13,8 @@ public class IppmFrame extends JFrame implements ActionListener{
 	private Font f1,f2,f3;
 	private JTextField qTextField;
 	private JLabel logoLabel,tagLabel,titleLabel,sloganLabel,label5,label6,label7,label,label1,label2,label3,label4;
-	private int price=1000;
+	private JButton cartButton;
+	private JLabel stockLabel;
 	private String productId="107";
 	public IppmFrame(){
 		//frame
@@ -54,7 +57,9 @@ public class IppmFrame extends JFrame implements ActionListener{
 		this.label3.setForeground(Color.black);
 		this.panel1.add(label3);
 		
-		this.label4=new JLabel("Price               : 1000$");
+		//price and stock are read from Product.txt
+		Product product=new ProductRepo().searchProductByProductId(productId);
+		this.label4=new JLabel("Price               : "+product.getPricePerUnit()+"$");
 		this.label4.setBounds(10,130,280,30);
 		this.label4.setFont(new Font("Calibri", Font.BOLD, 20));
 		this.label4.setForeground(Color.black);
@@ -102,6 +107,34 @@ public class IppmFrame extends JFrame implements ActionListener{
 		this.phoneButton2.setCursor(cursor);
 		this.phoneButton2.addActionListener(this);
 		this.panel.add(phoneButton2);
+
+		this.cartButton=new JButton("Add to Cart");
+		this.cartButton.setBounds(875,480,150,40);
+		this.cartButton.setBorder(BorderFactory.createEtchedBorder());
+		this.cartButton.setFocusable(false);
+		this.cartButton.setFont(new Font("Calibri", Font.BOLD, 19));
+		this.cartButton.setForeground(Color.black);
+		this.cartButton.setBackground(new Color(150,255,255));
+		this.cartButton.addActionListener(this);
+		this.cartButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		this.panel.add(cartButton);
+
+		this.stockLabel=new JLabel();
+		this.stockLabel.setBounds(800,535,300,30);
+		this.stockLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+		this.stockLabel.setHorizontalAlignment(JLabel.CENTER);
+		if(product.getAvailableQuantity()>0){
+			this.stockLabel.setText("In stock : "+product.getAvailableQuantity());
+			this.stockLabel.setForeground(new Color(112,255,87));
+		}
+		else{
+			this.stockLabel.setText("Out of stock");
+			this.stockLabel.setForeground(new Color(255,83,87));
+			this.phoneButton2.setEnabled(false);
+			this.cartButton.setEnabled(false);
+		}
+		this.panel.add(stockLabel);
+
 		
 		//bottom label of the photo
 		this.label6=new JLabel("IPhone 15 Pro Max");
@@ -178,6 +211,9 @@ public class IppmFrame extends JFrame implements ActionListener{
 		}
 		if(phoneButton2.getText().equals(command)){
 			PaymentFrame.open(this,qTextField.getText(),productId);
+		}
+		if(ae.getSource()==cartButton){
+			CartFrame.addToCart(this,qTextField.getText(),productId);
 		}
 		if(exitButton.getText().equals(command)){
 			System.exit(0);

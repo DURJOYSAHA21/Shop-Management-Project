@@ -3,13 +3,16 @@ import java.lang.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import entities.*;
+import repositories.*;
 
 public class Ar7Frame extends JFrame implements ActionListener{
 	private JPanel panel,detailsPanel;
 	private JButton backButton,exitButton,buyButton;
 	private JLabel titleLabel,tagLabel,sloganLabel,logoLabel,nameLabel,modelLabel,versionLabel,quanLabel,priceLabel,photoLabel,bnameLabel;
 	private JTextField quanTextField;
-	private int price=940;
+	private JButton cartButton;
+	private JLabel stockLabel;
 	private String productId="109";
 	public Ar7Frame(){
 		//frame
@@ -84,7 +87,9 @@ public class Ar7Frame extends JFrame implements ActionListener{
 		this.versionLabel.setForeground(Color.black);
 		this.detailsPanel.add(versionLabel);
 		
-		this.priceLabel=new JLabel("Price              : 940$");
+		//price and stock are read from Product.txt
+		Product product=new ProductRepo().searchProductByProductId(productId);
+		this.priceLabel=new JLabel("Price              : "+product.getPricePerUnit()+"$");
 		this.priceLabel.setBounds(10,130,280,30);	
 		this.priceLabel.setFont(new Font("Calibri", Font.BOLD, 20));
 		this.priceLabel.setForeground(Color.black);
@@ -124,6 +129,34 @@ public class Ar7Frame extends JFrame implements ActionListener{
 		this.buyButton.addActionListener(this);
 		this.buyButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.panel.add(buyButton);
+
+		this.cartButton=new JButton("Add to Cart");
+		this.cartButton.setBounds(875,480,150,40);
+		this.cartButton.setBorder(BorderFactory.createEtchedBorder());
+		this.cartButton.setFocusable(false);
+		this.cartButton.setFont(new Font("Calibri", Font.BOLD, 19));
+		this.cartButton.setForeground(Color.black);
+		this.cartButton.setBackground(new Color(150,255,255));
+		this.cartButton.addActionListener(this);
+		this.cartButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		this.panel.add(cartButton);
+
+		this.stockLabel=new JLabel();
+		this.stockLabel.setBounds(800,535,300,30);
+		this.stockLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+		this.stockLabel.setHorizontalAlignment(JLabel.CENTER);
+		if(product.getAvailableQuantity()>0){
+			this.stockLabel.setText("In stock : "+product.getAvailableQuantity());
+			this.stockLabel.setForeground(new Color(112,255,87));
+		}
+		else{
+			this.stockLabel.setText("Out of stock");
+			this.stockLabel.setForeground(new Color(255,83,87));
+			this.buyButton.setEnabled(false);
+			this.cartButton.setEnabled(false);
+		}
+		this.panel.add(stockLabel);
+
 		
 		//Fonts
 		
@@ -153,6 +186,9 @@ public class Ar7Frame extends JFrame implements ActionListener{
 		}
 		if(buyButton.getText().equals(command)){
 			PaymentFrame.open(this,quanTextField.getText(),productId);
+		}
+		if(ae.getSource()==cartButton){
+			CartFrame.addToCart(this,quanTextField.getText(),productId);
 		}
 		if(exitButton.getText().equals(command)){
 			System.exit(0);
