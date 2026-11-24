@@ -1,0 +1,2 @@
+cust1,Nadia Islam,Female,24,nadia@example.com,01700000003,Banani Dhaka,10%,Silver
+cust2,Tanvir Hasan,Male,30,tanvir@example.com,01700000004,Uttara Dhaka,20%,Gold

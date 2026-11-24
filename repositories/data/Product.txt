@@ -1,0 +1,12 @@
+101,Asus Tuf F15,Laptop,1099,65,FX506LH
+102,Apple MacBook Pro,Laptop,1000,60,90-HLH
+103,MSI Modern 15,Laptop,890,67,LTX-6LH
+104,Dell Inspiron 14,Laptop,1900,55,GCX-06LH
+105,HP Pavilion 15,Laptop,800,52,MSI-6LH
+106,Acer Aspire 7,Laptop,800,60,GX506LH
+107,IPhone 15 Pro Max,Smart Phone,1000,70,Mweni-34
+108,Samsung Galaxy S24 ultra,Smart Phone,1300,65,tvf4-98LH
+109,Asus ROG-7,Smart Phone,940,60,432T-H
+110,IPhone 15,Smart Phone,900,55,FXUYT-9LH
+111,Galaxy Fold 5,Smart Phone,1099,65,FX5TRI-LH
+112,Pixel 8,Smart Phone,840,54,FDF-06LH

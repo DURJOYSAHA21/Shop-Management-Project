@@ -1,0 +1,1 @@
+owner,Rahim Uddin,Male,40,owner@techshop.com,01700000001,Gulshan Dhaka,100.0

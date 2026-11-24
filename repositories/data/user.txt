@@ -1,0 +1,4 @@
+owner,2,dhaka,owner123
+emp1,1,khulna,emp123
+cust1,3,sylhet,cust123
+cust2,3,rajshahi,cust456
